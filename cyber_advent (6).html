@@ -1,0 +1,931 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cyber Juleadventskalender - Viborg Kommune</title>
+    <style>
+        /* ==================== IFRAME KOMPATIBILITET ==================== */
+        html, body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+        }
+        /* ==================== GRUNDLÆGGENDE STYLING ==================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(to bottom, #0a1e2e 0%, #1a3a4a 50%, #0f2818 100%);
+            color: #333;
+            padding: 20px;
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+        
+        /* Lag 1: Store faldende snefnug */
+        body::before {
+            content: "❄ ❄ ❄ ❄ ❄ ❄ ❄ ❄ ❄ ❄ ❄ ❄ ❄ ❄ ❄ ❄ ❄ ❄ ❄ ❄ ❄ ❄ ❄ ❄ ❄ ❄ ❄ ❄ ❄ ❄ ❄ ❄ ❄ ❄ ❄ ❄ ❄ ❄ ❄ ❄";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            font-size: 60px;
+            color: rgba(255, 255, 255, 0.4);
+            pointer-events: none;
+            z-index: 1;
+            animation: snowfall1 25s linear infinite;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.6);
+            word-spacing: 80px;
+            line-height: 120px;
+        }
+        
+        @keyframes snowfall1 {
+            0% { transform: translateY(-100px) rotate(0deg); }
+            100% { transform: translateY(100vh) rotate(360deg); }
+        }
+        
+        /* Lag 2: Mere snefnug med anden timing */
+        body::after {
+            content: "❄ ❄ ❄ ❄ ❄ ❄ ❄ ❄ ❄ ❄ ❄ ❄ ❄ ❄ ❄ ❄ ❄ ❄ ❄ ❄ ❄ ❄ ❄ ❄ ❄ ❄ ❄ ❄ ❄ ❄";
+            position: fixed;
+            top: -50px;
+            left: 50px;
+            width: 100%;
+            height: 100%;
+            font-size: 45px;
+            color: rgba(255, 255, 255, 0.35);
+            pointer-events: none;
+            z-index: 1;
+            animation: snowfall2 18s linear infinite;
+            text-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
+            word-spacing: 100px;
+            line-height: 140px;
+        }
+        
+        @keyframes snowfall2 {
+            0% { transform: translateY(-150px) rotate(0deg); }
+            100% { transform: translateY(100vh) rotate(-360deg); }
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: 
+                repeating-linear-gradient(
+                    0deg,
+                    #1a5c2e 0px,
+                    #1a5c2e 3px,
+                    #2d7a4a 3px,
+                    #2d7a4a 6px
+                );
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.3), 0 0 0 3px #d4af37;
+            position: relative;
+            z-index: 2;
+            overflow: hidden;
+        }
+        
+        /* Tæt juletræ-skov som dækker hele baggrunden */
+        .container::before {
+            content: "🎄🎄🎄🎄🎄🎄🎄🎄🎄🎄🎄🎄🎄🎄🎄🎄🎄🎄🎄🎄🎄🎄🎄🎄🎄🎄🎄🎄🎄🎄🎄🎄🎄🎄🎄🎄🎄🎄🎄🎄🎄🎄🎄🎄🎄🎄🎄🎄🎄🎄🎄🎄🎄🎄🎄🎄🎄🎄🎄🎄🎄🎄🎄🎄🎄🎄🎄🎄🎄🎄🎄🎄🎄🎄🎄🎄🎄🎄🎄🎄";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            font-size: 35px;
+            opacity: 0.15;
+            pointer-events: none;
+            z-index: 0;
+            letter-spacing: 5px;
+            line-height: 40px;
+            word-wrap: break-word;
+            word-break: break-all;
+        }
+        
+        /* Blinkende julestjerner spredt ud over juletræerne */
+        .container::after {
+            content: "⭐ ✨ ⭐ ✨ ⭐ ✨ ⭐ ✨ ⭐ ✨ ⭐ ✨ ⭐ ✨ ⭐ ✨ ⭐ ✨ ⭐ ✨ ⭐ ✨ ⭐ ✨ ⭐ ✨ ⭐ ✨ ⭐ ✨ ⭐ ✨ ⭐ ✨ ⭐ ✨ ⭐ ✨ ⭐ ✨";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            font-size: 16px;
+            pointer-events: none;
+            z-index: 0;
+            letter-spacing: 35px;
+            line-height: 50px;
+            word-wrap: break-word;
+            animation: christmasStars 2s ease-in-out infinite;
+            text-shadow: 0 0 8px rgba(255, 215, 0, 0.9);
+        }
+        
+        @keyframes christmasStars {
+            0%, 100% { opacity: 0.2; filter: brightness(0.8); }
+            50% { opacity: 0.6; filter: brightness(1.8); }
+        }
+        
+        /* Sikrer indhold er ovenpå baggrundsmønsteret */
+        .container > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        h1 {
+            text-align: center;
+            color: #0f3d1f;
+            margin-bottom: 10px;
+            font-size: 2.2em;
+            text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.9),
+                         0 0 10px rgba(255, 255, 255, 0.8);
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #c41e3a;
+            margin-bottom: 30px;
+            font-size: 1.1em;
+            font-weight: 600;
+            text-shadow: 1px 1px 3px rgba(255, 255, 255, 0.9),
+                         0 0 8px rgba(255, 255, 255, 0.7);
+        }
+
+        /* ==================== REGLER OG SAMTYKKE ==================== */
+        .rules-box {
+            background: rgba(248, 249, 250, 0.85);
+            border-left: 4px solid #c41e3a;
+            padding: 20px;
+            margin-bottom: 30px;
+            border-radius: 6px;
+            backdrop-filter: blur(5px);
+        }
+
+        .rules-box h3 {
+            color: #1a472a;
+            margin-bottom: 12px;
+            font-size: 1.2em;
+            text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.8);
+        }
+
+        .rules-box p {
+            line-height: 1.6;
+            margin-bottom: 8px;
+            color: #222;
+            text-shadow: 0 0 3px rgba(255, 255, 255, 0.6);
+        }
+
+        /* ==================== KALENDER GRID ==================== */
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .door-card {
+            background: linear-gradient(135deg, #c41e3a 0%, #8b1428 100%);
+            border-radius: 10px;
+            padding: 25px;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2), inset 0 1px 0 rgba(255,255,255,0.2);
+            color: white;
+            text-align: center;
+            border: 2px solid rgba(212, 175, 55, 0.5);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        /* Glitter-effekt på kortene */
+        .door-card::after {
+            content: "✨";
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 1.5em;
+            animation: sparkle 2s ease-in-out infinite;
+        }
+        
+        @keyframes sparkle {
+            0%, 100% { opacity: 0.3; transform: scale(0.8); }
+            50% { opacity: 1; transform: scale(1.2); }
+        }
+
+        .door-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 12px 28px rgba(196, 30, 58, 0.4), 
+                        0 0 20px rgba(212, 175, 55, 0.6),
+                        inset 0 1px 0 rgba(255,255,255,0.3);
+            border-color: #d4af37;
+        }
+
+        .door-number {
+            font-size: 3em;
+            font-weight: bold;
+            margin-bottom: 10px;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.8),
+                         0 0 20px rgba(255, 215, 0, 0.6),
+                         2px 2px 4px rgba(0, 0, 0, 0.3);
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+        
+        @keyframes glow {
+            from { text-shadow: 0 0 10px rgba(255, 255, 255, 0.8),
+                                0 0 20px rgba(255, 215, 0, 0.6),
+                                2px 2px 4px rgba(0, 0, 0, 0.3); }
+            to { text-shadow: 0 0 20px rgba(255, 255, 255, 1),
+                              0 0 30px rgba(255, 215, 0, 0.8),
+                              2px 2px 4px rgba(0, 0, 0, 0.3); }
+        }
+
+        .door-title {
+            font-size: 1.1em;
+            margin-bottom: 8px;
+        }
+
+        .door-description {
+            font-size: 0.9em;
+            opacity: 0.9;
+        }
+
+        /* ==================== MODAL STYLING ==================== */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.6);
+            overflow-y: auto;
+        }
+
+        .modal-content {
+            background-color: #fff;
+            margin: 40px auto;
+            padding: 30px;
+            border-radius: 12px;
+            max-width: 800px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+            position: relative;
+        }
+
+        .close-btn {
+            position: absolute;
+            right: 20px;
+            top: 20px;
+            font-size: 28px;
+            font-weight: bold;
+            color: #666;
+            cursor: pointer;
+            background: none;
+            border: none;
+            width: 35px;
+            height: 35px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: background 0.3s;
+        }
+
+        .close-btn:hover {
+            background: #f0f0f0;
+            color: #333;
+        }
+
+        .modal-header {
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #0f3d1f;
+            background: linear-gradient(to right, rgba(196, 30, 58, 0.1), rgba(15, 61, 31, 0.1));
+            padding: 15px;
+            border-radius: 8px;
+            margin: -10px -10px 25px -10px;
+        }
+
+        .modal-header h2 {
+            color: #0f3d1f;
+            margin-bottom: 5px;
+            text-shadow: 1px 1px 2px rgba(212, 175, 55, 0.3);
+        }
+
+        /* ==================== RIGTIGE SVAR FRA SIDSTE UGE ==================== */
+        .previous-answers {
+            background: #e8f5e9;
+            border-left: 4px solid #2d5f3f;
+            padding: 20px;
+            margin-bottom: 25px;
+            border-radius: 6px;
+        }
+
+        .previous-answers h3 {
+            color: #1a472a;
+            margin-bottom: 15px;
+            font-size: 1.1em;
+        }
+
+        .previous-answers-list {
+            list-style: none;
+        }
+
+        .previous-answers-list li {
+            padding: 8px 0;
+            border-bottom: 1px solid #c8e6c9;
+            color: #2d5f3f;
+            line-height: 1.5;
+        }
+
+        .previous-answers-list li:last-child {
+            border-bottom: none;
+        }
+
+        .previous-answers-list strong {
+            color: #1a472a;
+        }
+
+        /* ==================== SPØRGSMÅL ==================== */
+        .question-block {
+            margin-bottom: 30px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border-left: 4px solid #c41e3a;
+        }
+
+        .question-text {
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #1a472a;
+            font-size: 1.05em;
+            line-height: 1.5;
+        }
+
+        .answers {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .answer-option {
+            display: flex;
+            align-items: center;
+            padding: 12px;
+            background: white;
+            border: 2px solid #ddd;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .answer-option:hover {
+            border-color: #c41e3a;
+            background: #fff5f5;
+        }
+
+        .answer-option input[type="radio"] {
+            margin-right: 12px;
+            cursor: pointer;
+            width: 18px;
+            height: 18px;
+        }
+
+        .answer-option label {
+            cursor: pointer;
+            flex: 1;
+            line-height: 1.4;
+        }
+
+        /* ==================== BRUGER INPUT OG KNAPPER ==================== */
+        .user-input-section {
+            margin: 25px 0;
+            padding: 20px;
+            background: #fff9e6;
+            border-radius: 8px;
+            border-left: 4px solid #ffa726;
+        }
+
+        .user-input-section label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #1a472a;
+        }
+
+        .user-input-section input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #ddd;
+            border-radius: 6px;
+            font-size: 1em;
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, #c41e3a 0%, #8b1428 100%);
+            color: white;
+            padding: 15px 40px;
+            border: 2px solid #d4af37;
+            border-radius: 8px;
+            font-size: 1.1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            display: block;
+            margin: 0 auto;
+            box-shadow: 0 4px 12px rgba(196, 30, 58, 0.3),
+                        0 0 20px rgba(212, 175, 55, 0.2);
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(196, 30, 58, 0.4),
+                        0 0 30px rgba(212, 175, 55, 0.4);
+            border-color: #ffd700;
+        }
+
+        .submit-btn:active {
+            transform: translateY(0);
+        }
+
+        /* ==================== SUCCESS BESKED ==================== */
+        .success-message {
+            display: none;
+            background: #d4edda;
+            color: #155724;
+            padding: 15px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            border: 1px solid #c3e6cb;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        /* ==================== RESPONSIVT DESIGN ==================== */
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+
+            h1 {
+                font-size: 1.8em;
+            }
+
+            .calendar-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .modal-content {
+                margin: 20px;
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎄 Cyber Juleadventskalender 🔒</h1>
+        <p class="subtitle">Test din viden om IT-sikkerhed og GDPR</p>
+
+        <!-- REGLER OG SAMTYKKE -->
+        <div class="rules-box">
+            <h3>📜 Deltagelse og præmie</h3>
+            <p><strong>Hver fredag trækkes en vinder</strong> blandt alle deltagere, der har besvaret ugens spørgsmål.</p>
+            <p>Vinderen offentliggøres på Viborg Kommunes intranet, og præmien overrækkes af chefen for IT.</p>
+            <p><strong>Ved deltagelse samtykker du til:</strong></p>
+            <p>• At der tages et billede af dig sammen med chefen for IT ved præmieoverrækkelsen</p>
+            <p>• At dette billede samt dit navn må vises på kommunens intranet</p>
+            <p>Hvis du ikke ønsker at deltage i lodtrækningen, men gerne vil teste din viden, kan du blot undlade at sende dine svar via mail.</p>
+        </div>
+
+        <!-- KALENDER MED 4 LÅGER -->
+        <div class="calendar-grid">
+            <div class="door-card" onclick="openDoor(1)">
+                <div class="door-number">1</div>
+                <div class="door-title">Uge 1</div>
+                <div class="door-description">Grundlæggende sikkerhed</div>
+            </div>
+
+            <div class="door-card" onclick="openDoor(2)">
+                <div class="door-number">2</div>
+                <div class="door-title">Uge 2</div>
+                <div class="door-description">Passwords og MFA</div>
+            </div>
+
+            <div class="door-card" onclick="openDoor(3)">
+                <div class="door-number">3</div>
+                <div class="door-title">Uge 3</div>
+                <div class="door-description">Persondata og GDPR</div>
+            </div>
+
+            <div class="door-card" onclick="openDoor(4)">
+                <div class="door-number">4</div>
+                <div class="door-title">Uge 4</div>
+                <div class="door-description">Sikker datadeling</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL TIL SPØRGSMÅL -->
+    <div id="questionModal" class="modal">
+        <div class="modal-content">
+            <button class="close-btn" onclick="closeModal()">&times;</button>
+            <div class="modal-header">
+                <h2 id="modalTitle">Låge 1</h2>
+            </div>
+            
+            <div class="success-message" id="successMessage">
+                ✓ Alle svar er korrekte! Godt klaret!
+            </div>
+
+            <!-- Her indsættes "rigtige svar fra sidste uge" dynamisk -->
+            <div id="previousAnswersSection"></div>
+
+            <!-- Her indsættes spørgsmål dynamisk -->
+            <div id="questionsContainer"></div>
+
+            <div class="user-input-section">
+                <label for="userName">Dit navn eller initialer (bruges i emailens emnefelt):</label>
+                <input type="text" id="userName" placeholder="Fx: Anne Nielsen eller AN">
+            </div>
+
+            <button class="submit-btn" onclick="submitAnswers()">Send svar</button>
+        </div>
+    </div>
+
+    <script>
+        // ==================== SPØRGSMÅL OG SVARNØGLE ====================
+        // Her kan du nemt redigere spørgsmål og svar
+        // correctAnswer er indeks (0, 1 eller 2) for det korrekte svar
+        
+        const questions = {
+            1: [
+                {
+                    question: "Du modtager en mail, der ser ud til at komme fra din bank, og som beder dig klikke på et link for at opdatere dine oplysninger. Hvad bør du gøre?",
+                    answers: [
+                        "Klikke på linket og opdatere mine oplysninger med det samme",
+                        "Ignorere mailen, og eventuelt kontakter min bank direkte via deres officielle hjemmeside eller telefonnummer hvis jeg er meget i tvivl",
+                        "Videresende mailen til mine kolleger, så de også kan opdatere deres oplysninger"
+                    ],
+                    correctAnswer: 1
+                },
+                {
+                    question: "Hvad er kendetegn ved en phishing-mail? (Vælg ét svar - alle tre er rigtige kendetegn)",
+                    answers: [
+                        "Den kommer næsten altid fra en ukendt afsender",
+                        "Den forsøger at få dig til at handle hurtigt, ofte ved at skabe utryghed eller presse dig",
+                        "Den indeholder ofte stavefejl, dårligt dansk eller ordvendinger der ikke er normale på dansk"
+                    ],
+                    correctAnswer: [0, 1, 2] // Alle svar er korrekte
+                },
+                {
+                    question: "Hvad skal du gøre, hvis du har klikket på et mistænkeligt link i en mail?",
+                    answers: [
+                        "Slette mailen og håbe på det bedste",
+                        "Straks kontakte IT-afdelingen og følge deres anvisninger",
+                        "Genstarte min computer og ændre alle mine passwords"
+                    ],
+                    correctAnswer: 1
+                },
+                {
+                    question: "Du får en mail med emnet 'HASTER: Din konto bliver lukket om 24 timer'. Hvad tyder dette på?",
+                    answers: [
+                        "En legitim advarsel fra en vigtig tjeneste",
+                        "Et typisk phishing-forsøg, der bruger hastetaktik til at få dig til at handle ubetænksomt",
+                        "En påmindelse om at forny mit abonnement"
+                    ],
+                    correctAnswer: 1
+                }
+            ],
+            2: [
+                {
+                    question: "Hvad kendetegner et stærkt password?",
+                    answers: [
+                        "Det er mindst 12 tegn langt og indeholder store og små bogstaver, tal og specialtegn",
+                        "Det er let at huske, som fx 'Viborg2024'",
+                        "Det er det samme på alle platforme, så man ikke glemmer det"
+                    ],
+                    correctAnswer: 0
+                },
+                {
+                    question: "Hvad er MFA (Multi-Faktor Autentificering)?",
+                    answers: [
+                        "En metode til at huske flere passwords på én gang",
+                        "Et ekstra sikkerhedslag, hvor du skal bekræfte din identitet på mere end én måde (fx password + SMS-kode)",
+                        "En type firewall, der beskytter mod hackere"
+                    ],
+                    correctAnswer: 1
+                },
+                {
+                    question: "Må du dele dit password med en kollega, hvis I arbejder på samme projekt?",
+                    answers: [
+                        "Ja, hvis kollegaen har brug for adgang til et system",
+                        "Ja, men kun hvis chefen har godkendt det",
+                        "Nej, passwords må aldrig deles. Kollegaen skal have sin egen adgang"
+                    ],
+                    correctAnswer: 2
+                },
+                {
+                    question: "Hvor tit bør du som minimum ændre dit password til kritiske systemer?",
+                    answers: [
+                        "Hver måned",
+                        "Når IT-afdelingen anbefaler det, eller hvis der er mistanke om kompromittering",
+                        "Aldrig, hvis passwordet er stærkt nok"
+                    ],
+                    correctAnswer: 1
+                }
+            ],
+            3: [
+                {
+                    question: "Hvad er CPR-nummer klassificeret som i henhold til GDPR?",
+                    answers: [
+                        "Almindelige personoplysninger",
+                        "Følsomme personoplysninger, der kræver særlig beskyttelse",
+                        "Offentlige oplysninger, som alle må bruge"
+                    ],
+                    correctAnswer: 1
+                },
+                {
+                    question: "Må man skrive fulde navn eller CPR-nummer i emnefeltet på en kalenderinvitation eller mail?",
+                    answers: [
+                        "Ja, så er det nemt at se, hvad det handler om",
+                        "Nej, fordi emnefeltet altid sendes ukrypteret, og alle kolleger kan se, hvilke borgere du har i kalenderen",
+                        "Min kollega gør det, så må jeg vel også"
+                    ],
+                    correctAnswer: 1
+                },
+                {
+                    question: "Hvad er hovedprincippet i 'databegrænsning' under GDPR?",
+                    answers: [
+                        "Man må kun indsamle og opbevare de persondata, der er nødvendige for formålet",
+                        "Man skal begrænse antallet af medarbejdere, der har adgang til data",
+                        "Man skal slette alle persondata efter 1 år"
+                    ],
+                    correctAnswer: 0
+                },
+                {
+                    question: "En borger ringer og beder om indsigt i, hvilke oplysninger kommunen har om vedkommende. Hvad skal du gøre?",
+                    answers: [
+                        "Afvise anmodningen, da det er fortroligt",
+                        "Videregive anmodningen til den rette person eller afdeling, der håndterer indsigtsanmodninger",
+                        "Straks sende alle oplysninger til borgeren via mail"
+                    ],
+                    correctAnswer: 1
+                }
+            ],
+            4: [
+                {
+                    question: "Må du gemme arbejdsfiler med persondata på din private computer derhjemme?",
+                    answers: [
+                        "Ja, hvis det er nødvendigt for at arbejde hjemmefra",
+                        "Ja, men kun hvis filerne er password-beskyttede",
+                        "Nej, arbejdsfiler med persondata må kun gemmes på kommunens godkendte systemer"
+                    ],
+                    correctAnswer: 2
+                },
+                {
+                    question: "Hvad skal du gøre, hvis du opdager, at følsomme data ved en fejl er blevet sendt til den forkerte modtager?",
+                    answers: [
+                        "Kun kontakte modtageren og bede vedkommende slette mailen",
+                        "Straks melde det til din leder og It-afdelingen, da det kan være et databrud",
+                        "Ingenting, da det var en fejl, og modtageren nok ikke læser det alligevel"
+                    ],
+                    correctAnswer: 1
+                },
+                {
+                    question: "Hvilken af følgende metoder er IKKE sikker til at dele fortrolige dokumenter?",
+                    answers: [
+                        "Via kommunens godkendte fildelingsplatform (fx OneDrive med adgangskontrol)",
+                        "Via krypteret e-mail med password-beskyttede vedhæftninger",
+                        "Via almindelig, ukrypteret e-mail med filen som vedhæftning"
+                    ],
+                    correctAnswer: 2
+                },
+                {
+                    question: "Du skal arbejde på en offentlig café med følsomme borgeroplysninger. Hvad er vigtigst at huske?",
+                    answers: [
+                        "At sidde med ryggen mod en væg, så andre ikke kan se din skærm, og bruge VPN",
+                        "At arbejde hurtigt, så du kan komme væk hurtigst muligt",
+                        "At dele internetforbindelsen med en kollega for at spare data"
+                    ],
+                    correctAnswer: 0
+                }
+            ]
+        };
+
+        // ==================== RIGTIGE SVAR FRA TIDLIGERE UGER ====================
+        // Dette bruges til at vise "Rigtige svar fra sidste uge" i låge 2, 3 og 4
+        
+        const previousWeekAnswers = {
+            2: { // Låge 2 viser svar fra låge 1
+                weekNumber: 1,
+                answers: [
+                    { question: "Mail fra bank med link", correct: "Ignorere mailen, og eventuelt kontakter min bank direkte via deres officielle hjemmeside eller telefonnummer hvis jeg er meget i tvivl" },
+                    { question: "Kendetegn ved phishing", correct: "Alle tre svar er korrekte kendetegn ved phishing-mails" },
+                    { question: "Klikket på mistænkeligt link", correct: "Straks kontakte IT-afdelingen og følge deres anvisninger" },
+                    { question: "Mail med 'HASTER'", correct: "Et typisk phishing-forsøg, der bruger hastetaktik til at få dig til at handle ubetænksomt" }
+                ]
+            },
+            3: { // Låge 3 viser svar fra låge 2
+                weekNumber: 2,
+                answers: [
+                    { question: "Stærkt password", correct: "Det er mindst 12 tegn langt og indeholder store og små bogstaver, tal og specialtegn" },
+                    { question: "Hvad er MFA", correct: "Et ekstra sikkerhedslag, hvor du skal bekræfte din identitet på mere end én måde (fx password + SMS-kode)" },
+                    { question: "Dele password med kollega", correct: "Nej, passwords må aldrig deles. Kollegaen skal have sin egen adgang" },
+                    { question: "Hvor tit ændre password", correct: "Når IT-afdelingen anbefaler det, eller hvis der er mistanke om kompromittering" }
+                ]
+            },
+            4: { // Låge 4 viser svar fra låge 3
+                weekNumber: 3,
+                answers: [
+                    { question: "CPR-nummer klassificering", correct: "Følsomme personoplysninger, der kræver særlig beskyttelse" },
+                    { question: "Navn/CPR i emnefelt", correct: "Nej, fordi emnefeltet altid sendes ukrypteret, og alle kolleger kan se, hvilke borgere du har i kalenderen" },
+                    { question: "Databegrænsning princip", correct: "Man må kun indsamle og opbevare de persondata, der er nødvendige for formålet" },
+                    { question: "Borger beder om indsigt", correct: "Videregive anmodningen til den rette person eller afdeling, der håndterer indsigtsanmodninger" }
+                ]
+            }
+        };
+
+        let currentDoor = 1;
+        let userAnswers = {};
+
+        // ==================== ÅBNE OG LUKKE MODAL ====================
+        
+        function openDoor(doorNumber) {
+            currentDoor = doorNumber;
+            userAnswers = {}; // Nulstil svar
+            
+            document.getElementById('modalTitle').textContent = 'Låge ' + doorNumber + ' - Uge ' + doorNumber;
+            document.getElementById('successMessage').style.display = 'none';
+            document.getElementById('userName').value = '';
+            
+            // Vis "rigtige svar fra sidste uge" for låge 2, 3 og 4
+            const previousSection = document.getElementById('previousAnswersSection');
+            if (previousWeekAnswers[doorNumber]) {
+                const prev = previousWeekAnswers[doorNumber];
+                let html = '<div class="previous-answers">';
+                html += '<h3>✅ Rigtige svar fra uge ' + prev.weekNumber + '</h3>';
+                html += '<ul class="previous-answers-list">';
+                prev.answers.forEach((item, index) => {
+                    html += '<li><strong>Spørgsmål ' + (index + 1) + ':</strong> ' + item.question + '<br>';
+                    html += '<strong>Korrekt svar:</strong> ' + item.correct + '</li>';
+                });
+                html += '</ul></div>';
+                previousSection.innerHTML = html;
+            } else {
+                previousSection.innerHTML = '';
+            }
+            
+            // Byg spørgsmålene
+            const container = document.getElementById('questionsContainer');
+            const doorQuestions = questions[doorNumber];
+            let html = '';
+            
+            doorQuestions.forEach((q, index) => {
+                html += '<div class="question-block">';
+                html += '<div class="question-text">' + (index + 1) + '. ' + q.question + '</div>';
+                html += '<div class="answers">';
+                
+                q.answers.forEach((answer, answerIndex) => {
+                    const radioId = 'q' + index + 'a' + answerIndex;
+                    html += '<div class="answer-option">';
+                    html += '<input type="radio" id="' + radioId + '" name="question' + index + '" value="' + answerIndex + '">';
+                    html += '<label for="' + radioId + '">' + answer + '</label>';
+                    html += '</div>';
+                });
+                
+                html += '</div></div>';
+            });
+            
+            container.innerHTML = html;
+            document.getElementById('questionModal').style.display = 'block';
+        }
+
+        function closeModal() {
+            document.getElementById('questionModal').style.display = 'none';
+        }
+
+        // Luk modal hvis man klikker uden for indholdet
+        window.onclick = function(event) {
+            const modal = document.getElementById('questionModal');
+            if (event.target == modal) {
+                closeModal();
+            }
+        }
+
+        // ==================== VALIDERING OG INDSENDELSE ====================
+        
+        function submitAnswers() {
+            const doorQuestions = questions[currentDoor];
+            userAnswers = {};
+            let allAnswered = true;
+            
+            // Indsaml alle svar
+            doorQuestions.forEach((q, index) => {
+                const selectedAnswer = document.querySelector('input[name="question' + index + '"]:checked');
+                if (selectedAnswer) {
+                    userAnswers[index] = parseInt(selectedAnswer.value);
+                } else {
+                    allAnswered = false;
+                }
+            });
+            
+            // Tjek om alle spørgsmål er besvaret
+            if (!allAnswered) {
+                alert('Du skal besvare alle 4 spørgsmål, før du kan sende dine svar.');
+                return;
+            }
+            
+            // Tjek om navn er udfyldt
+            const userName = document.getElementById('userName').value.trim();
+            if (!userName) {
+                alert('Indtast venligst dit navn eller initialer, før du sender.');
+                return;
+            }
+            
+            // Valider svar
+            let correctCount = 0;
+            let hasErrors = false;
+            
+            doorQuestions.forEach((q, index) => {
+                // Tjek om correctAnswer er et array (multiple choice hvor alle er rigtige)
+                if (Array.isArray(q.correctAnswer)) {
+                    // Alle svar er korrekte - accepter ethvert valgt svar
+                    if (q.correctAnswer.includes(userAnswers[index])) {
+                        correctCount++;
+                    } else {
+                        hasErrors = true;
+                    }
+                } else {
+                    // Standard enkelt korrekt svar
+                    if (userAnswers[index] === q.correctAnswer) {
+                        correctCount++;
+                    } else {
+                        hasErrors = true;
+                    }
+                }
+            });
+            
+            // Hvis der er fejl, vis bekræftelse
+            if (hasErrors) {
+                const confirmSend = confirm(
+                    'Noget tyder på, at der kan være fejl i dine svar. Er du sikker på, at du vil sende besvarelsen alligevel?'
+                );
+                if (!confirmSend) {
+                    return; // Brugeren valgte at annullere
+                }
+            } else {
+                // Vis success besked
+                document.getElementById('successMessage').style.display = 'block';
+                setTimeout(() => {
+                    document.getElementById('successMessage').style.display = 'none';
+                }, 3000);
+            }
+            
+            // Generer email
+            generateEmail(doorQuestions, correctCount, hasErrors, userName);
+        }
+
+        // ==================== GENERER OUTLOOK MAIL ====================
+        
+        function generateEmail(doorQuestions, correctCount, hasErrors, userName) {
+            const recipient = 'sikkerhed@viborg.dk';
+            
+            // Byg emne-linje
+            let subjectPrefix = hasErrors ? '--' : '**';
+            let subject = subjectPrefix + ' Cyber Advent – Låge ' + currentDoor + ' – ' + userName;
+            
+            // Byg brødtekst - kun svarene
+            let body = 'Låge ' + currentDoor + ' - ' + userName + '\n\n';
+            
+            doorQuestions.forEach((q, index) => {
+                const userAnswerIndex = userAnswers[index];
+                body += 'Svar ' + (index + 1) + ': ' + q.answers[userAnswerIndex] + '\n';
+            });
+            
+            // URL-encode subject og body
+            const mailtoLink = 'mailto:' + recipient + 
+                              '?subject=' + encodeURIComponent(subject) + 
+                              '&body=' + encodeURIComponent(body);
+            
+            // Åbn mail-klienten
+            window.location.href = mailtoLink;
+            
+            // Luk modal efter kort pause
+            setTimeout(() => {
+                closeModal();
+            }, 500);
+        }
+    </script>
+</body>
+</html>
